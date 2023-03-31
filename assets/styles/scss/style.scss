@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap');
+
+@import "./tech";
+@import "./header";
+@import "./widgets";
+
+
+html {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
+  
+  *, 
+  *::before, 
+  *::after {
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+  }
+
+body {
+    background-color: var(--bg-color);
+    background-image: url(/assets/images/other_img/stars.png);
+    background-repeat: repeat;
+}
+
+.container {
+    max-width: clamp(335px, 100vw, 1440px);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(115px, 12.5vw, 180px);;
+}
+
+

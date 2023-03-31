@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap");
+@font-face {
+  font-family: "Rock 3D";
+  src: url("/assets/fonts/yYLp0hrL0PCo651513SnwRnQyNI.ttf") format("truetype");
+  font-style: normal;
+}
+:root {
+  --bg-color: #051F52;
+  --color: #ffffff;
+  font-size: 10px;
+  font-style: normal;
+  color: var(--color);
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 1fr;
+  align-items: center;
+  padding: 32px 0 0;
+}
+
+.logo__img {
+  width: 175px;
+}
+
+.menu {
+  justify-self: end;
+}
+.menu__items {
+  display: flex;
+  gap: 20px;
+  list-style-type: none;
+}
+.menu__link {
+  font-family: "Raleway";
+  font-weight: 400;
+  font-size: 2.2rem;
+  text-decoration: none;
+  color: var(--color);
+  transition: 0.3s;
+}
+.menu__link:hover {
+  font-family: "Raleway";
+  font-weight: 600;
+  font-size: 2.2rem;
+}
+
+.sun {
+  position: relative;
+}
+.sun__img {
+  position: absolute;
+  top: -48rem;
+  left: 0;
+  width: 57.5rem;
+  height: 59.6rem;
+  background-image: url("/assets/images/other_img/sun.png");
+  animation: rotation 60s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.section-title {
+  font-family: "Rock 3D";
+  text-transform: uppercase;
+  font-size: clamp(3.3rem, 5.4vw, 7.8rem);
+}
+
+.widgets__title {
+  padding: clamp(3.1rem, 5.2vw, 7.5rem) 0;
+  text-align: center;
+}
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  background-image: url(/assets/images/other_img/stars.png);
+  background-repeat: repeat;
+}
+
+.container {
+  max-width: clamp(335px, 100vw, 1440px);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(115px, 12.5vw, 180px);
+}/*# sourceMappingURL=style.css.map */

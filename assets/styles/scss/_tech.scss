@@ -1,0 +1,64 @@
+//Вводная информация по проекту
+// Условные именования разделов: 1) хедер, 2) виджеты с планетами, 3) инфо по конкретной планете, 4) статистика
+
+@font-face {
+    font-family: "Rock 3D";
+    src: url("/assets/fonts/yYLp0hrL0PCo651513SnwRnQyNI.ttf") format("truetype");
+    font-style: normal;
+  }
+
+:root {
+    --bg-color: #051F52;
+    --color: #ffffff;
+    font-size: 10px;
+    font-style: normal;
+    color: var(--color);
+  }
+
+// Миксин для заголовка инфы по планете
+  @mixin planet-title {
+    font-family: "Rock 3D";
+    font-size: clamp(3.3rem, 10vw, 14.4rem);
+  }
+
+// Миксин для заголовков блока с виджетами и статистики
+  @mixin section-title {
+    font-family: "Rock 3D";
+    text-transform: uppercase;
+    font-size: clamp(3.3rem, 5.4vw, 7.8rem);
+  }
+
+// Миксин для заголовков таблиц в инфе по планетам, текста кнопки Сравнить
+@mixin table-title {
+    font-family: "Raleway";
+    font-weight: 500;
+    font-size: 3.6rem;
+  }
+
+// Миксин для названий строк в таблицах, текста речи космонавта
+@mixin h4 {
+    font-family: "Raleway";
+    font-weight: 600;
+    font-size: 2.2rem;
+  }
+
+// Миксин для данных в таблице
+@mixin h5 {
+    font-family: "Raleway";
+    font-weight: 400;
+    font-size: 2.2rem;
+  } 
+
+// Миксин для текста виджета
+@mixin h6 {
+    font-family: "Raleway";
+    font-weight: 400;
+    font-size: 1.4rem;
+  } 
+
+// Миксин для всех таблиц, кнопок, виджетов. Определяет белую широкую рамку. Но не задает скругления. Бордер-радиус надо прописать самим
+  @mixin border {
+    border: 4px solid var(--color-text);
+    background-color: transparent;
+    color: var(--color-active);
+  }

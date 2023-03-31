@@ -1,0 +1,53 @@
+.header {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr 1fr;
+    align-items: center;
+    padding: 32px 0 0;
+}
+
+.logo {
+    &__img {
+        width: 175px;
+    }
+}
+
+.menu {
+    justify-self: end;
+
+    &__items {
+        display: flex;
+        gap: 20px;
+        list-style-type: none;
+    }
+
+    &__link {
+        @include h5;
+        text-decoration: none;
+        color: var(--color);
+        transition: .3s;
+
+        &:hover {
+            @include h4;
+        }
+    }
+}
+
+.sun {
+    position: relative;
+
+    &__img {
+        position: absolute;
+        top: -48rem;
+        left: 0;
+        width: 57.5rem;
+        height: 59.6rem;
+        background-image: url("/assets/images/other_img/sun.png");
+        animation: rotation 60s linear infinite;
+    }
+
+}
+
+@keyframes rotation {
+    0% {transform:rotate(0deg);}
+    100% {transform:rotate(360deg);}
+}

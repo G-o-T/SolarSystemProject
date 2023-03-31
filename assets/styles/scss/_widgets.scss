@@ -1,0 +1,10 @@
+.section-title {
+    @include section-title;
+}
+
+.widgets {
+    &__title {
+        padding: clamp(3.1rem, 5.2vw, 7.5rem) 0;
+        text-align: center;
+    }
+}
