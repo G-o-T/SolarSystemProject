@@ -1,10 +1,113 @@
+h1, h6 {
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
 .section-title {
     @include section-title;
 }
 
 .widgets {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     &__title {
-        padding: clamp(3.1rem, 5.2vw, 7.5rem) 0;
+        padding: 0 0 clamp(3.1rem, 5.2vw, 7.5rem);
         text-align: center;
+    }
+
+    &__items {
+        display: flex;
+        gap: 20px;
+        list-style-type: none;
+    }
+
+    &__item {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-content: end;
+        align-items: center;
+        gap: 5%;
+        min-width: 136px;
+        min-height: 74px;
+        border-radius: 10px;
+        @include border;
+        cursor: pointer;
+        transition: .3s;
+
+        &:hover {
+            background-color: var(--color);
+            color: var(--bg-color);
+        }
+
+        &:hover .widgets__text {
+            font-weight: 600;
+        }
+
+    }
+
+    &__img { 
+        display: flex;
+        justify-content: center;
+        padding-left: 10px;
+    }
+
+    &__text {
+        @include h6;
+    }
+
+}
+
+.slider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+
+    // &__wrapper {
+    //     position: relative;
+    //     height: 74px;   
+    // }
+
+    // &__tape {
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+    // }
+
+    &__controls {
+        display: flex;
+        gap: 20px;
+        // justify-items: space-between;
+
+        @media (min-width: 1439px) {
+            display: none;
+        }
+    }
+
+
+    &__control {
+        width: 48px;
+        height: 48px;
+        cursor: pointer;
+
+        &:hover {
+            filter: drop-shadow(0px 0px 4px rgba(255, 255, 255, 1));
+        }
+
+        &:active {
+            filter: drop-shadow(0px 0px 4px rgba(255, 255, 255, 1));
+        }
+    
+        &_next {
+            background-image: url("/assets/images/other_img/next.png");
+        }
+    
+        &_prev {
+            background-image: url("/assets/images/other_img/prev.png");
+        }
     }
 }

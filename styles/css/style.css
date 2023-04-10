@@ -10,13 +10,70 @@
   font-size: 10px;
   font-style: normal;
   color: var(--color);
+  font-feature-settings: "pnum" on, "lnum" on;
 }
 
 .header {
   display: grid;
   grid-template-columns: 1fr 1.3fr 1fr;
   align-items: center;
-  padding: 32px 0 0;
+  padding: 32px 0 clamp(3.1rem, 8vw, 17.5rem);
+}
+@media (max-width: 1279px) {
+  .header {
+    padding-top: 20px;
+  }
+}
+.header__menu {
+  justify-self: end;
+}
+@media (max-width: 767px) {
+  .header__menu_nav {
+    position: fixed;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-color);
+    transform: translate(100%, 0);
+    transition: all 0.6s ease 0s;
+  }
+}
+.header__menu_burger {
+  display: none;
+  user-select: none;
+}
+@media (max-width: 767px) {
+  .header__menu_burger {
+    z-index: 10;
+    display: block;
+    position: relative;
+    width: 50px;
+    height: 22px;
+    cursor: pointer;
+  }
+}
+.header__menu_burger::before, .header__menu_burger::after,
+.header__menu_burger span {
+  position: absolute;
+  height: 2px;
+  width: 50px;
+  background-color: var(--color);
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+}
+.header__menu_burger::before, .header__menu_burger::after {
+  content: "";
+}
+.header__menu_burger::before {
+  top: 0;
+}
+.header__menu_burger::after {
+  bottom: 0;
+}
+.header__menu_burger span {
+  top: 50%;
+  transform: translate(0, -50%);
 }
 
 .logo__img {
@@ -31,6 +88,13 @@
   gap: 20px;
   list-style-type: none;
 }
+@media (max-width: 767px) {
+  .menu__items {
+    flex-direction: column;
+    gap: 40px;
+    margin: clamp(77.5px, 6.25vw, 90px);
+  }
+}
 .menu__link {
   font-family: "Raleway";
   font-weight: 400;
@@ -44,6 +108,11 @@
   font-weight: 600;
   font-size: 2.2rem;
 }
+@media (max-width: 767px) {
+  .menu__link:hover, .menu__link:active {
+    filter: drop-shadow(0px 0px 4px rgb(255, 255, 255));
+  }
+}
 
 .sun {
   position: relative;
@@ -52,10 +121,23 @@
   position: absolute;
   top: -48rem;
   left: 0;
-  width: 57.5rem;
-  height: 59.6rem;
-  background-image: url("/assets/images/other_img/sun.png");
-  animation: rotation 60s linear infinite;
+  animation: rotation 180s linear infinite;
+}
+@media (max-width: 980px) {
+  .sun__img {
+    display: none;
+  }
+}
+.sun__imgS {
+  position: absolute;
+  top: -22rem;
+  animation: rotation 180s linear infinite;
+  order: -20;
+}
+@media (min-width: 979px) {
+  .sun__imgS {
+    display: none;
+  }
 }
 
 @keyframes rotation {
@@ -66,17 +148,391 @@
     transform: rotate(360deg);
   }
 }
+h1 {
+  margin: 0;
+}
+
+.active {
+  transform: translate(0, 0);
+  height: 100vh;
+}
+
+.rotate::before {
+  transform: translateY(10px) rotate(-45deg);
+}
+.rotate::after {
+  transform: translateY(-10px) rotate(45deg);
+}
+.rotate span {
+  opacity: 0;
+}
+
+h1, h6 {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
 .section-title {
   font-family: "Rock 3D";
   text-transform: uppercase;
   font-size: clamp(3.3rem, 5.4vw, 7.8rem);
 }
 
+.widgets {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .widgets__title {
-  padding: clamp(3.1rem, 5.2vw, 7.5rem) 0;
+  padding: 0 0 clamp(3.1rem, 5.2vw, 7.5rem);
   text-align: center;
 }
+.widgets__items {
+  display: flex;
+  gap: 20px;
+  list-style-type: none;
+}
+.widgets__item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: end;
+  align-items: center;
+  gap: 5%;
+  min-width: 136px;
+  min-height: 74px;
+  border-radius: 10px;
+  border: 4px solid var(--color);
+  background-color: transparent;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.widgets__item:hover {
+  background-color: var(--color);
+  color: var(--bg-color);
+}
+.widgets__item:hover .widgets__text {
+  font-weight: 600;
+}
+.widgets__img {
+  display: flex;
+  justify-content: center;
+  padding-left: 10px;
+}
+.widgets__text {
+  font-family: "Raleway";
+  font-weight: 400;
+  font-size: 1.4rem;
+  padding-right: 12px;
+}
 
+.slider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.slider__controls {
+  display: flex;
+  gap: 20px;
+}
+@media (min-width: 1439px) {
+  .slider__controls {
+    display: none;
+  }
+}
+.slider__control {
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+}
+.slider__control:hover {
+  filter: drop-shadow(0px 0px 4px rgb(255, 255, 255));
+}
+.slider__control:active {
+  filter: drop-shadow(0px 0px 4px rgb(255, 255, 255));
+}
+.slider__control_next {
+  background-image: url("/assets/images/other_img/next.png");
+}
+.slider__control_prev {
+  background-image: url("/assets/images/other_img/prev.png");
+}
+
+.planet-info {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(7rem, 6.11vw, 8.8rem);
+}
+.planet-info__title {
+  font-family: "Rock 3D";
+  font-size: clamp(5.5rem, 10vw, 14.4rem);
+  display: flex;
+  align-self: end;
+}
+@media (max-width: 500px) {
+  .planet-info__title {
+    justify-self: center;
+  }
+}
+.planet-info__img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 5%;
+}
+.planet-info__img:hover {
+  animation: shake 60s linear infinite;
+}
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(30deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-30deg);
+  }
+}
+.planet-info__row {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  margin-top: clamp(77.5px, 6.25vw, 90px);
+}
+@media (max-width: 500px) {
+  .planet-info__row {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 3fr;
+    gap: 32px;
+  }
+}
+.planet-info__tables {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
+  margin-bottom: clamp(77.5px, 6.25vw, 90px);
+}
+.planet-info__table {
+  display: flex;
+  flex-direction: column;
+  gap: 2.8rem;
+  border: 4px solid var(--color);
+  background-color: transparent;
+  border-radius: 2rem;
+  padding: 4.2rem 2rem 4.2rem 2.8rem;
+}
+.planet-info__table-title {
+  font-family: "Raleway";
+  font-weight: 500;
+  font-size: 3.6rem;
+}
+.planet-info__data {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding-left: 1.4rem;
+}
+.planet-info__data-row {
+  display: grid;
+  grid-template-columns: 1.5fr 2fr;
+  gap: 2rem;
+}
+.planet-info__data-title {
+  font-family: "Raleway";
+  font-weight: 600;
+  font-size: 2.2rem;
+}
+.planet-info__data-desc {
+  font-family: "Raleway";
+  font-weight: 400;
+  font-size: 2.2rem;
+}
+
+.statistics {
+  padding-bottom: clamp(3.2rem, 6.94vw, 10rem);
+}
+.statistics__title {
+  text-align: right;
+}
+.statistics__row {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  padding: clamp(3.1rem, 5.2vw, 7.5rem) 0 0;
+  gap: clamp(20px, 3.5vw, 84px);
+}
+@media (max-width: 768px) {
+  .statistics__row {
+    grid-template-columns: 1fr;
+  }
+}
+.statistics__img-astro {
+  position: relative;
+}
+.statistics__astro-pic {
+  width: clamp(28rem, 33vw, 40rem);
+}
+.statistics__astro-text {
+  position: absolute;
+  top: 7%;
+  left: 10%;
+  width: clamp(18.8rem, 16.8vw, 24.2rem);
+  font-family: "Raleway";
+  font-weight: 600;
+  font-size: 2.2rem;
+  font-size: clamp(1.7rem, 1.53vw, 2.2rem);
+  text-align: center;
+  line-height: 160%;
+  margin-right: 1.5vw;
+}
+@media (max-width: 1500px) {
+  .statistics__astro-text {
+    top: 8%;
+    left: 11%;
+  }
+}
+@media (max-width: 1360px) {
+  .statistics__astro-text {
+    top: 9%;
+    left: 12%;
+  }
+}
+@media (max-width: 1260px) {
+  .statistics__astro-text {
+    top: 9%;
+    left: 15%;
+  }
+}
+@media (max-width: 1000px) {
+  .statistics__astro-text {
+    top: 9%;
+    left: 12%;
+  }
+}
+@media (max-width: 900px) {
+  .statistics__astro-text {
+    top: 7%;
+    left: 8%;
+    font-size: clamp(1.6rem, 1.53vw, 2.2rem);
+  }
+}
+@media (max-width: 768px) {
+  .statistics__astro-text {
+    top: 7%;
+    left: 6%;
+  }
+}
+.statistics__img-comet {
+  width: 20vw;
+}
+.statistics__chart-field {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: center;
+  max-width: clamp(350px, 63.6vw, 916px);
+}
+@media (max-width: 768px) {
+  .statistics__chart-field {
+    width: 80vw;
+  }
+}
+.statistics__chart-wrap {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+  max-width: 916px;
+}
+.statistics__form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  gap: 20px;
+}
+.statistics__input {
+  border: 4px solid var(--color);
+  background-color: transparent;
+  padding: 1.6rem 0;
+  text-align: center;
+  border-radius: 2rem;
+  font-family: "Raleway";
+  font-weight: 600;
+  font-size: 2.2rem;
+  color: var(--color);
+  cursor: pointer;
+  padding: clamp(0.8rem, 1vw, 4.2rem);
+  line-height: 160%;
+  background-color: var(--bg-color);
+  cursor: pointer;
+}
+.statistics__input:focus {
+  outline-color: var(--color);
+}
+@media (max-width: 559px) {
+  .statistics__input {
+    border-radius: 1.5rem;
+  }
+}
+.statistics__btn {
+  padding: 1.4rem 0;
+  border: 4px solid var(--color);
+  background-color: transparent;
+  border-radius: 2rem;
+  font-family: "Raleway";
+  font-weight: 500;
+  font-size: 3.6rem;
+  color: var(--color);
+  cursor: pointer;
+}
+.statistics__btn:hover {
+  background-color: var(--color);
+  color: var(--bg-color);
+}
+.statistics__chart-body {
+  display: flex;
+  justify-self: center;
+  padding-top: clamp(3.2rem, 6.11vw, 5.5rem);
+}
+.statistics__canvas-wrap {
+  max-width: clamp(350px, 63.6vw, 916px);
+}
+.statistics__option {
+  font-family: "Raleway";
+  font-weight: 600;
+  font-size: 2.2rem;
+}
+
+.animation {
+  animation: launch 2s ease-out;
+  overflow: hidden;
+}
+
+.animationEmersion {
+  animation: emersion 1s linear;
+}
+
+.inert {
+  display: none;
+}
+
+@keyframes launch {
+  0% {
+    transform: rotate(0deg);
+  }
+  15% {
+    transform: rotate(-180deg);
+  }
+  100% {
+    transform: translate(-3000px, -1200px);
+  }
+}
+@keyframes emersion {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 html {
   box-sizing: border-box;
   scroll-behavior: smooth;
@@ -92,8 +548,12 @@ html {
 
 body {
   background-color: var(--bg-color);
-  background-image: url(/assets/images/other_img/stars.png);
+  background-image: url("/assets/images/other_img/stars.png");
   background-repeat: repeat;
+}
+
+body.lock {
+  overflow: hidden;
 }
 
 .container {
@@ -101,9 +561,12 @@ body {
   margin: 0 auto;
   padding: 0 20px;
 }
+.container_hidden {
+  overflow: hidden;
+}
 
 .main {
   display: flex;
   flex-direction: column;
-  gap: clamp(115px, 12.5vw, 180px);
-}/*# sourceMappingURL=style.css.map */
+  gap: clamp(77.5px, 6.25vw, 90px);
+}

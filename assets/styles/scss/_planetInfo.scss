@@ -1,0 +1,87 @@
+.planet-info {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(7rem, 6.11vw, 8.8rem);
+
+    &__title {
+        @include planet-title;
+        display: flex;
+        align-self: end;
+
+        @media (max-width: 500px) {
+            justify-self: center;
+        }
+
+    }
+
+    &__img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 5%;
+        // transition: 3s;
+
+        &:hover {
+            animation: shake 60s linear infinite;
+        }
+    }
+
+    @keyframes shake {
+        0% { transform: translate(1px, 1px) rotate(0deg); }
+        50% { transform: translate(-1px, 2px) rotate(30deg); }
+        100% { transform: translate(1px, -2px) rotate(-30deg); }
+      }
+
+    &__row {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        margin-top: clamp(77.5px, 6.25vw, 90px);
+
+        @media (max-width: 500px) {
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 3fr;
+            gap: 32px;
+        }
+    }
+
+    &__tables {
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
+        margin-bottom: clamp(77.5px, 6.25vw, 90px);
+    }
+
+    &__table {
+        display: flex;
+        flex-direction: column;
+        gap: 2.8rem;
+        @include border;
+        border-radius: 2rem;
+        padding: 4.2rem 2rem 4.2rem 2.8rem;
+    }
+
+    &__table-title {
+        @include table-title;
+    }
+
+    &__data {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        padding-left: 1.4rem;
+    }
+
+    &__data-row {
+        display: grid;
+        grid-template-columns: 1.5fr 2fr;
+        gap: 2rem;
+    }
+
+    &__data-title {
+        @include h4;
+    }
+
+    &__data-desc {
+        @include h5;
+    }
+}

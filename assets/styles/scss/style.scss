@@ -3,6 +3,8 @@
 @import "./tech";
 @import "./header";
 @import "./widgets";
+@import "./planetInfo";
+@import "./statistics";
 
 
 html {
@@ -20,20 +22,28 @@ html {
 
 body {
     background-color: var(--bg-color);
-    background-image: url(/assets/images/other_img/stars.png);
+    background-image: url("/assets/images/other_img/stars.png");
     background-repeat: repeat;
+}
+
+body.lock {
+  overflow: hidden;
 }
 
 .container {
     max-width: clamp(335px, 100vw, 1440px);
     margin: 0 auto;
     padding: 0 20px;
+    
+    &_hidden {
+      overflow: hidden;
+    }
 }
 
 .main {
     display: flex;
     flex-direction: column;
-    gap: clamp(115px, 12.5vw, 180px);;
+    gap: clamp(77.5px, 6.25vw, 90px);
 }
 
 

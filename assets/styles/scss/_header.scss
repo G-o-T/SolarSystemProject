@@ -2,7 +2,77 @@
     display: grid;
     grid-template-columns: 1fr 1.3fr 1fr;
     align-items: center;
-    padding: 32px 0 0;
+    padding: 32px 0 clamp(3.1rem, 8vw, 17.5rem);   
+            
+    @media (max-width: 1279px) {
+        padding-top: 20px;
+    }
+
+    &__menu {
+        justify-self: end;
+    }
+
+    &__menu_nav {
+        @media (max-width: 767px) {
+            position: fixed;
+            z-index: 5;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+            transform: translate(100%, 0);
+            transition: all .6s ease 0s;
+        }
+    }
+
+    &__menu_burger {
+        display: none;
+        user-select: none;
+        
+        @media (max-width: 767px) {
+            z-index: 10;
+            display: block;
+            position: relative;
+            width: 50px;
+            height: 22px;
+            cursor: pointer;
+        }
+
+        &::before,
+        &::after,
+        span {
+            position: absolute;
+            height: 2px;
+            width: 50px;
+            // transition: all .3s ease 0s;
+            background-color: var(--color);
+            transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+            0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+        }
+
+        &::before,
+        &::after {
+            content: '';
+        }
+
+        &::before {
+            top: 0;
+            // transform: translateY(10px) rotate(-45deg);
+        }
+
+        &::after {
+            bottom: 0;
+            // transform: translateY(-10px) rotate(45deg);
+        }
+
+        span {
+            top: 50%;
+            transform: translate(0, -50%);
+            // opacity: 0;
+        }
+
+    }
 }
 
 .logo {
@@ -18,6 +88,12 @@
         display: flex;
         gap: 20px;
         list-style-type: none;
+
+        @media (max-width: 767px) {
+            flex-direction: column;
+            gap: 40px;
+            margin: clamp(77.5px, 6.25vw, 90px);
+        }
     }
 
     &__link {
@@ -29,6 +105,14 @@
         &:hover {
             @include h4;
         }
+
+        @media (max-width: 767px) {
+            
+            &:hover,
+            &:active {
+                filter: drop-shadow(0px 0px 4px rgba(255, 255, 255, 1));
+            }
+        }
     }
 }
 
@@ -39,15 +123,53 @@
         position: absolute;
         top: -48rem;
         left: 0;
-        width: 57.5rem;
-        height: 59.6rem;
-        background-image: url("/assets/images/other_img/sun.png");
-        animation: rotation 60s linear infinite;
+        animation: rotation 180s linear infinite;
+
+        
+    @media (max-width: 980px) {
+        display: none;
+    }
     }
 
+    &__imgS {
+        position: absolute;
+        top: -22rem;
+        animation: rotation 180s linear infinite;
+        order: -20;
+
+        
+    @media (min-width: 979px) {
+        display: none;
+    }
+    }
 }
+
 
 @keyframes rotation {
     0% {transform:rotate(0deg);}
     100% {transform:rotate(360deg);}
 }
+
+h1 {
+    margin: 0;
+}
+
+.active {
+    transform: translate(0, 0);
+    height: 100vh;
+}
+
+.rotate{
+        &::before {
+            transform: translateY(10px) rotate(-45deg);
+        }
+
+        &::after {
+            transform: translateY(-10px) rotate(45deg);
+        }
+
+        span {
+            opacity: 0;
+        }
+    }
+        
