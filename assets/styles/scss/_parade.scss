@@ -1,0 +1,87 @@
+.parade {
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    position: relative;
+    margin-top: -100px;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    
+
+    &__planet {
+
+        &_mercury {
+            width: 10px;
+            height: 10px;
+            animation: drive 5s linear infinite;
+            transform-origin: 0px -300px;
+        }
+
+        &_venus {
+            width: 27px;
+            height: 27px;
+            animation: drive 2.3s linear infinite;
+            transform-origin: 0px -330px;
+        }
+        
+        &_earth {
+            width: 30px;
+            height: 30px;
+            animation: drive 4s linear infinite;
+            transform-origin: 0px -377px;
+        }
+
+        &_mars {
+            width: 25px;
+            height: 25px;
+            animation: drive 7s linear infinite;
+            transform-origin: 0px -427px;
+        }
+
+        &_jupiter {
+            width: 43px;
+            height: 43px;
+            animation: drive 15s linear infinite;
+            transform-origin: 0px -490px;
+        }
+
+        &_saturn {
+            width: 70px;
+            height: 35px;
+            animation: drive 36s linear infinite;
+            transform-origin: 0px -545px;
+        }
+        
+        &_uranus {
+            width: 66px;
+            height: 33px;
+            animation: drive 48s linear infinite;
+            transform-origin: 0px -598px;
+        }
+
+        &_neptune {
+            width: 30px;
+            height: 30px;
+            animation: drive 52s linear infinite;
+            transform-origin: 0px -648px;
+        }
+
+        &_pluto {
+            width: 20px;
+            height: 20px;
+            animation: drive 78s linear infinite;
+            transform-origin: 0px -688px;
+        }
+    }
+
+    @media (max-width: 1080px) {
+        display: none;
+    }
+
+    
+    @keyframes drive {
+        100% {transform: rotate(-360deg);}
+    }
+}

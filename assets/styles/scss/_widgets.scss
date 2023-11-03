@@ -34,7 +34,7 @@ h1, h6 {
         border-radius: 10px;
         @include border;
         cursor: pointer;
-        transition: .3s;
+        transition: .5s;
 
         &:hover {
             background-color: var(--color);

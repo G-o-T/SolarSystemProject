@@ -24,8 +24,8 @@
             <div class="header__menu">
                 <nav class="header__menu_nav menu">
                     <ul class="menu__items">
-                        <li class="menu__item"><a data-goto=".widgets" class="menu__link" href="#">Data</a></li>
-                        <li class="menu__item"><a data-goto=".statistics" class="menu__link" href="#">Statistics</a></li>
+                        <li class="menu__item"><a data-goto=".widgets" class="menu__link" href="#" title="Data">Data</a></li>
+                        <li class="menu__item"><a data-goto=".statistics" class="menu__link" href="#" title="Statistics">Statistics</a></li>
                     </ul>
                 </nav>
                 <div class="header__menu_burger">
@@ -34,46 +34,51 @@
             </div>
         </header>
     </div>
-        <main class="main">
-            <div class="container container_hidden">
-                <div class="widgets">
-                    <h1 class="section-title widgets__title">Learn<br>Solar System</h1>
-                    <div class="slider">
-                        <div class="slider__wrapper">
-                            <ul class="widgets__items slider__tape"></ul>
-                        </div>
-                        <div class="slider__controls">
-                            <div class="slider__control slider__control_prev"></div>
-                            <div class="slider__control slider__control_next"></div>
-                        </div>
+    <main class="main">
+        <div class="container">
+            <section class="parade">
+            </section>
+        </div>
+        <div class="container container_hidden">
+            <div class="widgets">
+                <h1 class="section-title widgets__title">Learn<br>Solar System</h1>
+                <div class="slider">
+                    <div class="slider__wrapper">
+                        <ul class="widgets__items slider__tape"></ul>
+                    </div>
+                    <div class="slider__controls">
+                        <div class="slider__control slider__control_prev"></div>
+                        <div class="slider__control slider__control_next"></div>
                     </div>
                 </div>
-                <div class="planet-info"></div>
             </div>
-            <div class="container">
-                <div class="statistics">
-                    <h2 class="section-title statistics__title">Statistics</h2>
-                    <div class="statistics__row">
-                        <div class="statistics__img-astro">
-                            <p class="statistics__astro-text">Hi, I'm Nick. I will help you to understand how the planets differ from each other.</p>
-                            <img src="./assets/images/other_img/astronaut.png" alt="astronaut" class="statistics__astro-pic">
-                        </div>
-                        <div class="statistics__chart-wrap">
-                            <form class="statistics__form" name="form">
-                                <select class="statistics__input" name="input" id="">
-                                    <option value="default" selected="true" disabled="disabled">Choose an option</option>
-                                </select>
-                                <button class="statistics__btn">Compare</button>
-                            </form>
-                            <div class="statistics__chart-field">
-                                 <canvas id="сhart" class="statistics__chart-body"></canvas>
-                                <img src="./assets/images/other_img/comet.png" alt="comet" class="statistics__img-comet">
+            <div class="planet-info"></div>
+        </div>
+        <div class="container">
+            <div class="statistics">
+                <h2 class="section-title statistics__title">Statistics</h2>
+                <div class="statistics__row">
+                    <div class="statistics__img-astro">
+                        <p class="statistics__astro-text tooltip">Hi, I'm Nick. I will help you to understand how the planets differ from each other.</p>
+                        <img src="./assets/images/other_img/astronaut_s.png" alt="astronaut" class="statistics__astro-pic">
+                    </div>
+                    <div class="statistics__chart-wrap">
+                        <form class="statistics__form" name="form">
+                            <div class="fake__select-wrapper" data-dropdown="dropdown">
+                                <button class="fake__select fake__select_triangle" data-value="default" data-dropdown="dropdown">Choose an option</button>
+                                <ul class="fake__options-list" data-dropdown="dropdown"></ul>
                             </div>
-                        </div>
+                            <button class="statistics__btn">Compare</button>
+                        </form>
+                        <div class="statistics__chart-field">
+                            <canvas id="сhart" class="statistics__chart-body"></canvas>
+                            <img src="./assets/images/other_img/comet.png" alt="comet" class="statistics__img-comet">
+                        </div> 
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
+    </main>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script type="module" src="./scripts/script.js"></script>
 </body>

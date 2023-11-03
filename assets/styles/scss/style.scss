@@ -5,17 +5,18 @@
 @import "./widgets";
 @import "./planetInfo";
 @import "./statistics";
+@import "./parade";
+@import "./fakeSelect";
 
 
 html {
-    box-sizing: border-box;
     scroll-behavior: smooth;
   }
   
   *, 
   *::before, 
   *::after {
-    box-sizing: inherit;
+    box-sizing: border-box;
     padding: 0;
     margin: 0;
   }
@@ -31,7 +32,7 @@ body.lock {
 }
 
 .container {
-    max-width: clamp(335px, 100vw, 1440px);
+    width: clamp(335px, 100vw, 1440px);
     margin: 0 auto;
     padding: 0 20px;
     
@@ -43,7 +44,11 @@ body.lock {
 .main {
     display: flex;
     flex-direction: column;
-    gap: clamp(77.5px, 6.25vw, 90px);
+    gap: clamp(77.5px, 6.25vw, 180px);
+}
+
+.content {
+  overflow: visible;
 }
 
 

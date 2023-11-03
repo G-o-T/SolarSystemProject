@@ -15,9 +15,10 @@
 
 .header {
   display: grid;
-  grid-template-columns: 1fr 1.3fr 1fr;
+  grid-template-columns: 2fr 2fr 1fr;
   align-items: center;
   padding: 32px 0 clamp(3.1rem, 8vw, 17.5rem);
+  z-index: 10;
 }
 @media (max-width: 1279px) {
   .header {
@@ -104,9 +105,15 @@
   transition: 0.3s;
 }
 .menu__link:hover {
-  font-family: "Raleway";
   font-weight: 600;
-  font-size: 2.2rem;
+}
+.menu__link::after {
+  display: block;
+  content: attr(title);
+  height: 0;
+  font-weight: 600;
+  overflow: hidden;
+  visibility: hidden;
 }
 @media (max-width: 767px) {
   .menu__link:hover, .menu__link:active {
@@ -118,8 +125,10 @@
   position: relative;
 }
 .sun__img {
+  width: 300px;
+  height: 330px;
   position: absolute;
-  top: -48rem;
+  top: -28rem;
   left: 0;
   animation: rotation 180s linear infinite;
 }
@@ -204,7 +213,7 @@ h1, h6 {
   border: 4px solid var(--color);
   background-color: transparent;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.5s;
 }
 .widgets__item:hover {
   background-color: var(--color);
@@ -280,9 +289,12 @@ h1, h6 {
   justify-content: center;
   align-items: center;
   padding-bottom: 5%;
+  animation: shake 60s linear infinite;
+  animation-play-state: paused;
 }
 .planet-info__img:hover {
   animation: shake 60s linear infinite;
+  animation-play-state: running;
 }
 @keyframes shake {
   0% {
@@ -349,33 +361,51 @@ h1, h6 {
   font-size: 2.2rem;
 }
 
+.animation-opacity {
+  animation: opac 5s ease;
+}
+
+@keyframes opac {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .statistics {
-  padding-bottom: clamp(3.2rem, 6.94vw, 10rem);
+  display: flex;
+  flex-direction: column;
+  padding-bottom: clamp(2rem, 6.94vw, 4rem);
 }
 .statistics__title {
-  text-align: right;
+  display: flex;
+  justify-content: flex-end;
 }
 .statistics__row {
+  width: 100%;
+  position: relative;
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 2fr 4fr;
   padding: clamp(3.1rem, 5.2vw, 7.5rem) 0 0;
   gap: clamp(20px, 3.5vw, 84px);
 }
 @media (max-width: 768px) {
   .statistics__row {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
   }
 }
 .statistics__img-astro {
-  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.7rem, 1.53vw, 2.2rem);
 }
 .statistics__astro-pic {
-  width: clamp(28rem, 33vw, 40rem);
+  width: clamp(16rem, 33vw, 24rem);
 }
 .statistics__astro-text {
-  position: absolute;
-  top: 7%;
-  left: 10%;
   width: clamp(18.8rem, 16.8vw, 24.2rem);
   font-family: "Raleway";
   font-weight: 600;
@@ -383,49 +413,21 @@ h1, h6 {
   font-size: clamp(1.7rem, 1.53vw, 2.2rem);
   text-align: center;
   line-height: 160%;
-  margin-right: 1.5vw;
-}
-@media (max-width: 1500px) {
-  .statistics__astro-text {
-    top: 8%;
-    left: 11%;
-  }
-}
-@media (max-width: 1360px) {
-  .statistics__astro-text {
-    top: 9%;
-    left: 12%;
-  }
-}
-@media (max-width: 1260px) {
-  .statistics__astro-text {
-    top: 9%;
-    left: 15%;
-  }
-}
-@media (max-width: 1000px) {
-  .statistics__astro-text {
-    top: 9%;
-    left: 12%;
-  }
-}
-@media (max-width: 900px) {
-  .statistics__astro-text {
-    top: 7%;
-    left: 8%;
-    font-size: clamp(1.6rem, 1.53vw, 2.2rem);
-  }
-}
-@media (max-width: 768px) {
-  .statistics__astro-text {
-    top: 7%;
-    left: 6%;
-  }
 }
 .statistics__img-comet {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
   width: 20vw;
 }
+@media (max-width: 768px) {
+  .statistics__img-comet {
+    display: none;
+  }
+}
 .statistics__chart-field {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: end;
@@ -434,52 +436,30 @@ h1, h6 {
 }
 @media (max-width: 768px) {
   .statistics__chart-field {
-    width: 80vw;
+    width: 100%;
   }
 }
 .statistics__chart-wrap {
   display: flex;
   flex-direction: column;
-  align-self: flex-end;
+  justify-content: space-between;
   max-width: 916px;
 }
 .statistics__form {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
   gap: 20px;
+  z-index: 10;
 }
-.statistics__input {
+.statistics__btn {
+  padding: clamp(1.4rem, 1vw, 4.2rem);
   border: 4px solid var(--color);
   background-color: transparent;
-  padding: 1.6rem 0;
-  text-align: center;
   border-radius: 2rem;
   font-family: "Raleway";
   font-weight: 600;
   font-size: 2.2rem;
-  color: var(--color);
-  cursor: pointer;
-  padding: clamp(0.8rem, 1vw, 4.2rem);
   line-height: 160%;
-  background-color: var(--bg-color);
-  cursor: pointer;
-}
-.statistics__input:focus {
-  outline-color: var(--color);
-}
-@media (max-width: 559px) {
-  .statistics__input {
-    border-radius: 1.5rem;
-  }
-}
-.statistics__btn {
-  padding: 1.4rem 0;
-  border: 4px solid var(--color);
-  background-color: transparent;
-  border-radius: 2rem;
-  font-family: "Raleway";
-  font-weight: 500;
-  font-size: 3.6rem;
   color: var(--color);
   cursor: pointer;
 }
@@ -487,10 +467,14 @@ h1, h6 {
   background-color: var(--color);
   color: var(--bg-color);
 }
+.statistics__btn:active {
+  opacity: 0.9;
+}
 .statistics__chart-body {
   display: flex;
   justify-self: center;
   padding-top: clamp(3.2rem, 6.11vw, 5.5rem);
+  z-index: 2;
 }
 .statistics__canvas-wrap {
   max-width: clamp(350px, 63.6vw, 916px);
@@ -533,15 +517,223 @@ h1, h6 {
     opacity: 1;
   }
 }
+.tooltip {
+  width: fit-content;
+  position: relative;
+  background: transparent;
+  border: 6px solid #fff;
+  padding: 6px 10px;
+  border-radius: 20px;
+}
+
+.tooltip:after, .tooltip:before {
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  background-color: transparent;
+  border: 6px solid #fff;
+}
+
+.tooltip:after {
+  top: 150%;
+  left: 55%;
+  width: 20px;
+  height: 20px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+}
+
+.tooltip:before {
+  top: 120%;
+  left: 60%;
+  width: 30px;
+  height: 30px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  border-radius: 12px;
+}
+
+.parade {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  position: relative;
+  margin-top: -100px;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.parade__planet_mercury {
+  width: 10px;
+  height: 10px;
+  animation: drive 5s linear infinite;
+  transform-origin: 0px -300px;
+}
+.parade__planet_venus {
+  width: 27px;
+  height: 27px;
+  animation: drive 2.3s linear infinite;
+  transform-origin: 0px -330px;
+}
+.parade__planet_earth {
+  width: 30px;
+  height: 30px;
+  animation: drive 4s linear infinite;
+  transform-origin: 0px -377px;
+}
+.parade__planet_mars {
+  width: 25px;
+  height: 25px;
+  animation: drive 7s linear infinite;
+  transform-origin: 0px -427px;
+}
+.parade__planet_jupiter {
+  width: 43px;
+  height: 43px;
+  animation: drive 15s linear infinite;
+  transform-origin: 0px -490px;
+}
+.parade__planet_saturn {
+  width: 70px;
+  height: 35px;
+  animation: drive 36s linear infinite;
+  transform-origin: 0px -545px;
+}
+.parade__planet_uranus {
+  width: 66px;
+  height: 33px;
+  animation: drive 48s linear infinite;
+  transform-origin: 0px -598px;
+}
+.parade__planet_neptune {
+  width: 30px;
+  height: 30px;
+  animation: drive 52s linear infinite;
+  transform-origin: 0px -648px;
+}
+.parade__planet_pluto {
+  width: 20px;
+  height: 20px;
+  animation: drive 78s linear infinite;
+  transform-origin: 0px -688px;
+}
+@media (max-width: 1080px) {
+  .parade {
+    display: none;
+  }
+}
+@keyframes drive {
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+.fake__select-wrapper {
+  position: relative;
+}
+.fake__select {
+  height: 100%;
+  width: 100%;
+  border: 4px solid var(--color);
+  background-color: transparent;
+  text-align: center;
+  border-radius: 2rem;
+  font-family: "Raleway";
+  font-weight: 600;
+  font-size: 2.2rem;
+  color: var(--color);
+  cursor: pointer;
+  padding: clamp(1.4rem, 1vw, 4.2rem);
+  padding-right: clamp(4rem, 1vw, 12rem);
+  line-height: 160%;
+  background-color: transparent;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+.fake__select::-ms-expand {
+  display: none;
+}
+.fake__select:focus {
+  outline-color: var(--bg-color);
+}
+.fake__select::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: clamp(2rem, 1vw, 6rem);
+  transform: translateY(-50%);
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  pointer-events: none;
+  transition: 0.3s;
+}
+.fake__select_triangle::before {
+  border-width: 12.1px 7px 0 7px;
+  border-color: #ffffff transparent transparent transparent;
+}
+.fake__select_rotate-triangle::before {
+  border-width: 0 7px 12.1px 7px;
+  border-color: transparent transparent #ffffff transparent;
+}
+.fake__options-list {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 8.2rem;
+  list-style-type: none;
+  width: 100%;
+  border: 4px solid var(--color);
+  background-color: transparent;
+  border-radius: 2rem;
+  font-family: "Raleway";
+  font-weight: 600;
+  font-size: 2.2rem;
+  color: var(--color);
+  cursor: pointer;
+}
+.fake__options-list_visible {
+  display: block;
+}
+.fake__options-list-item {
+  width: 100%;
+  text-align: left;
+  padding: clamp(1.4rem, 1vw, 4.2rem);
+  padding-right: clamp(4rem, 1vw, 12rem);
+  line-height: 160%;
+  background-color: var(--bg-color);
+  border-bottom: 2px solid #fff;
+  cursor: pointer;
+}
+.fake__options-list-item:first-child {
+  border-radius: 1.5rem 1.5rem 0 0;
+}
+.fake__options-list-item:last-child {
+  border-radius: 0 0 1.5rem 1.5rem;
+  border-bottom: none;
+}
+.fake__options-list-item:hover {
+  background-color: var(--color);
+  color: var(--bg-color);
+}
+.fake__options-list-item:active {
+  opacity: 0.9;
+}
+
 html {
-  box-sizing: border-box;
   scroll-behavior: smooth;
 }
 
 *,
 *::before,
 *::after {
-  box-sizing: inherit;
+  box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
@@ -557,7 +749,7 @@ body.lock {
 }
 
 .container {
-  max-width: clamp(335px, 100vw, 1440px);
+  width: clamp(335px, 100vw, 1440px);
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -568,5 +760,9 @@ body.lock {
 .main {
   display: flex;
   flex-direction: column;
-  gap: clamp(77.5px, 6.25vw, 90px);
+  gap: clamp(77.5px, 6.25vw, 180px);
+}
+
+.content {
+  overflow: visible;
 }

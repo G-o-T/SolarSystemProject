@@ -1,82 +1,62 @@
 .statistics {
-padding-bottom: clamp(3.2rem, 6.94vw, 10rem);
+    display: flex;
+    flex-direction: column;
+    padding-bottom: clamp(2rem, 6.94vw, 4rem);
 
     &__title {
-        text-align: right;
+        display: flex;
+        justify-content: flex-end;
     }
 
     &__row {
+        width: 100%;
+        position: relative;
         display: grid;
-        grid-template-columns: 1fr 3fr;
+        grid-template-columns: 2fr 4fr;
         padding: clamp(3.1rem, 5.2vw, 7.5rem) 0 0;
-        gap: clamp(20px, 3.5vw, 84px);;
+        gap: clamp(20px, 3.5vw, 84px);
 
-        
         @media (max-width: 768px) {
-            grid-template-columns: 1fr;
+            display: flex;
+            flex-direction: column;
         }
     }
-
+        
         &__img-astro {
-            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(1.7rem, 1.53vw, 2.2rem);
         }
 
         &__astro-pic {
-            width: clamp(28rem, 33vw, 40rem);
+            width: clamp(16rem, 33vw, 24rem);
 
         }
 
         &__astro-text {
-            position: absolute;
-            top: 7%;
-            left: 10%; 
             width: clamp(18.8rem, 16.8vw, 24.2rem);
             @include h4;
             font-size: clamp(1.7rem, 1.53vw, 2.2rem);
             text-align: center;
             line-height: 160%;
-            margin-right: 1.5vw;
-
-            
-            @media (max-width: 1500px) {
-                top: 8%;
-                left: 11%; 
-            }
-
-            @media (max-width: 1360px) {
-                top: 9%;
-                left: 12%; 
-            }
-
-            @media (max-width: 1260px) {
-                top: 9%;
-                left: 15%; 
-            }
-
-            @media (max-width: 1000px) {
-                top: 9%;
-                left: 12%; 
-            }
-
-            @media (max-width: 900px) {
-                top: 7%;
-                left: 8%;
-                font-size: clamp(1.6rem, 1.53vw, 2.2rem);
-            }
-
-            @media (max-width: 768px) {
-                top: 7%;
-                left: 6%; 
-            }
         }
 
     &__img-comet {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
         width: 20vw;
-        
+
+        @media (max-width: 768px) {
+            display: none;
+        }
     }
 
     
     &__chart-field {
+        position: relative;
         display: flex;
         flex-direction: column;
         align-items: end;
@@ -84,14 +64,14 @@ padding-bottom: clamp(3.2rem, 6.94vw, 10rem);
         max-width: clamp(350px, 63.6vw, 916px);
 
         @media (max-width: 768px) {
-            width: 80vw;
+            width: 100%;
         }
     }
 
     &__chart-wrap {
         display: flex;
         flex-direction: column;
-        align-self: flex-end;
+        justify-content: space-between;
         max-width: 916px;
     }
 
@@ -99,35 +79,15 @@ padding-bottom: clamp(3.2rem, 6.94vw, 10rem);
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
         gap: 20px;
-    }
-
-    &__input {
-        @include border;
-        padding: 1.6rem 0;
-        text-align: center; 
-        border-radius: 2rem;
-        @include h4;
-        color: var(--color);
-        cursor: pointer;
-        padding: clamp(0.8rem, 1vw, 4.2rem);
-        line-height: 160%;
-        background-color: var(--bg-color);
-        cursor: pointer;
-
-        &:focus {
-            outline-color: var(--color);
-        }
-
-        @media (max-width: 559px) {
-            border-radius: 1.5rem;
-        }
+        z-index: 10;
     }
 
     &__btn {
-        padding: 1.4rem 0;
+        padding: clamp(1.4rem, 1vw, 4.2rem);
         @include border;
         border-radius: 2rem;
-        @include table-title;
+        @include h4;
+        line-height: 160%;
         color: var(--color);
         cursor: pointer;
 
@@ -135,12 +95,17 @@ padding-bottom: clamp(3.2rem, 6.94vw, 10rem);
             background-color: var(--color);
             color: var(--bg-color);
         }  
+
+        &:active {
+            opacity: 0.9;
+        }
     }
 
     &__chart-body {
         display: flex;
         justify-self: center;
         padding-top: clamp(3.2rem, 6.11vw, 5.5rem);    
+        z-index: 2;
     }
 
 
@@ -178,3 +143,65 @@ padding-bottom: clamp(3.2rem, 6.94vw, 10rem);
     0% { opacity: 0; }
     100% { opacity: 1;}
     }
+
+
+.tooltip {
+    width: fit-content;
+	position: relative;
+	background: transparent;
+	border: 6px solid #fff;
+    padding: 6px 10px;
+    border-radius: 20px;
+}
+
+.tooltip:after, .tooltip:before {
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+    background-color: transparent;
+    border: 6px solid #fff;
+}
+
+.tooltip:after {
+    top: 150%;
+    left: 55%;
+    width: 20px;
+    height: 20px;
+
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+
+.tooltip:before {
+    top: 120%;
+    left: 60%;
+    width: 30px;
+    height: 30px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+}
+
+// .select-wrapper {
+//     position: relative;
+
+//     &::before {
+//         content: '';
+//         position: absolute;
+//         top: 50%;
+//         right: clamp(2rem, 1vw, 6rem);
+//         transform: translateY(-50%);
+//         display: block;
+//         width: 0;
+//         height: 0;
+//         border-style: solid;
+//         border-width: 12.1px 7px 0 7px;
+//         border-color: #ffffff transparent transparent transparent;
+//         pointer-events: none;
+    
+//     }
+// }

@@ -1,0 +1,105 @@
+.fake {
+
+    &__select-wrapper {
+        position: relative;
+    }
+
+    &__select {
+        height: 100%;
+        width: 100%;
+        @include border;
+        text-align: center; 
+        border-radius: 2rem;
+        @include h4;
+        color: var(--color);
+        cursor: pointer;
+        padding: clamp(1.4rem, 1vw, 4.2rem);
+        padding-right: clamp(4rem, 1vw, 12rem);
+        line-height: 160%;
+        background-color: transparent;
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+
+        &::-ms-expand {
+            display: none;
+        }
+
+        &:focus {
+            outline-color: var(--bg-color);       
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: clamp(2rem, 1vw, 6rem);
+            transform: translateY(-50%);
+            display: block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            pointer-events: none;
+            transition: .3s; 
+        }
+
+        &_triangle::before {
+            border-width: 12.1px 7px 0 7px;
+            border-color: #ffffff transparent transparent transparent;
+        }
+        &_rotate-triangle::before {
+            border-width: 0 7px 12.1px 7px;
+            border-color: transparent transparent #ffffff transparent;
+        }
+    }
+
+
+    &__options-list {
+        display: none;
+        position: absolute;
+        left: 0;
+        top: 8.2rem;
+        list-style-type: none;
+        width: 100%;
+        @include border;
+        border-radius: 2rem;
+        @include h4;
+        color: var(--color);
+        cursor: pointer;
+
+        &_visible {
+            display: block;
+        }
+    }
+
+    &__options-list-item {
+        width: 100%;
+        text-align: left;
+        padding: clamp(1.4rem, 1vw, 4.2rem);
+        padding-right: clamp(4rem, 1vw, 12rem);
+        line-height: 160%;
+        background-color: var(--bg-color);
+        border-bottom: 2px solid #fff;
+        cursor: pointer;
+
+        &:first-child {
+            border-radius: 1.5rem 1.5rem 0 0;
+        }
+
+        &:last-child {
+            border-radius: 0 0 1.5rem 1.5rem;
+            border-bottom: none;
+        }
+
+        &:hover {
+            background-color: var(--color);
+            color: var(--bg-color);
+        }
+
+        &:active {
+            opacity: 0.9;
+        }
+    }
+
+
+}

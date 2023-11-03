@@ -13,7 +13,7 @@ export class NewChart {
     createChart() {
         const ctxChart = document.getElementById('сhart');
 
-        if (this.myChart === true) {
+        if (this.myChart) {
           this.myChart.destroy();
         }
         
@@ -41,6 +41,7 @@ export class NewChart {
               data: this.data,
               borderWidth: 1,
               borderRadius: 10,
+
               backgroundColor: [
                 "#2F7495",
                 '#75AEC1',
@@ -57,10 +58,39 @@ export class NewChart {
             }]
           },
           options: {
+            scales: {
+              y: {
+                grid: {
+                  color: "#ffffff60",
+                  tickColor: "#fff",
+                },
+                ticks: {
+                  color: "#fff",
+                  font: {
+                    weight: "bold"
+                  }
+              }
+            },
+              x: {
+                grid: {
+                  color: "#ffffff60",
+                  tickColor: "#fff",
+                },
+                ticks: {
+                  color: "#fff",
+                  font: {
+                    weight: "bold"
+                  }
+              }
+              },
+          },
             plugins: {
               customCanvasBackgroundColor: {
-                color: 'white',
-              }
+                color: 'transparent',
+              },
+              legend: {
+                display: false,
+            }
             }
           },
           plugins: [plugin],

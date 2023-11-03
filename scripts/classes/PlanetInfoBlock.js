@@ -57,7 +57,7 @@ export class PlanetInfoBlock {
                 </div>
                 <div class="planet-info__data-row">
                     <div class="planet-info__data-title">average radius</div>
-                    <div class="planet-info__data-desc">${this.data[6]} kilometres</div>
+                    <div class="planet-info__data-desc">${this.data[6]} kilometers</div>
                 </div> 
                  <div class="planet-info__data-row">
                     <div class="planet-info__data-title">average temperature</div>

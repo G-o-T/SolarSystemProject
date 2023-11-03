@@ -8,38 +8,78 @@ import { Slider } from "./classes/Slider.js";
 import { MenuItem } from "./classes/Menu.js";
 import { err404 } from "./data.js";
 import { speech } from "./data.js";
+import { ParadeOfPlanets } from "./classes/ParadeOfPlanets.js";
+import { planetsNames } from "./data.js";
+import { Dropdown } from "./classes/Dropdown.js";
 
 
 window.addEventListener("DOMContentLoaded", () => {
 
-        for (let i = 0; i < planetsId.length; i++) {
+    const parade = new ParadeOfPlanets(planetsNames);
+    setTimeout(parade.createParade(), 1000);
+
+    for (let i = 0; i < planetsId.length; i++) {
         let data = new WidgetFetch(planetsId[i]);
         data.getEnglishName(i);
     }
 
-    const param = new Param('.statistics__input');
+    const param = new Param('fake__options-list', 'fake__options-list-item');
     param.fillOptions();
+    let selectedParam = 'default';
 
-    function createError(){
-        document.querySelector(".statistics__astro-text").innerHTML = err404;
+    const astroSpeech = document.querySelector(".statistics__astro-text");
+
+    function createError(){ 
+        astroSpeech.innerHTML = err404;
+        astroSpeech.style.color = '#d47580';
     }
 
     function hideError(){
-        document.querySelector(".statistics__astro-text").innerHTML = speech;
+        astroSpeech.innerHTML = speech;
+        astroSpeech.style.color = '#fff';
     }
+
+    
+    const dropDownBtn = document.querySelector('.fake__select');
+    const dropdown = new Dropdown();
+    dropDownBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        dropDownBtn.classList.toggle('fake__select_triangle');
+        dropDownBtn.classList.toggle('fake__select_rotate-triangle');
+
+        dropdown.toggleDropdownVisibility('.fake__options-list');
+    })
+
+    const dropDownList = document.querySelector('.fake__options-list');
+    dropDownList.addEventListener('click', e => {
+        dropDownBtn.innerHTML = dropdown.getSelectedDropdownItem(e).text;
+        selectedParam = dropdown.getSelectedDropdownItem(e).value;
+        dropdown.hideDropdown('.fake__options-list');
+        dropDownBtn.classList.toggle('fake__select_triangle');
+        dropDownBtn.classList.toggle('fake__select_rotate-triangle');
+    });
+
+    document.addEventListener('click', e => {
+        if (e.target.dataset.dropdown !== 'dropdown') {
+            dropdown.hideDropdown('.fake__options-list');
+            dropDownBtn.classList.add('fake__select_triangle');
+            dropDownBtn.classList.remove('fake__select_rotate-triangle');
+        }
+    }) 
+
 
     const compareBtn = new Button('.statistics__btn');
     compareBtn.onClick(       
-        (event) => {
-            event.preventDefault();
+        (e) => {
+            e.preventDefault();
 
-            if(param.getSelectedParam()=== 'default'){
+            if(selectedParam === 'default'){
                 createError();
             } else {
-            const comparison = new ChartFetch(param.getSelectedParam());
+            const comparison = new ChartFetch(selectedParam);
             const comet = new Comet('.statistics__img-comet');
             comet.launch();
-            comparison.getCharingInfo();
+            comparison.getChartingInfo();
             hideError();
             }
 });
@@ -72,5 +112,5 @@ window.addEventListener("DOMContentLoaded", () => {
             menuLink.goTo();
         })
     })
-
 })
+
