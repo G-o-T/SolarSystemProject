@@ -2,7 +2,7 @@
 
 ![image](https://github.com/G-o-T/SolarSystemProject/assets/95774476/58d2e8ab-97a1-4737-8a3a-aa574ce5d6bc)
 
-During this project I've learnt how to work with ** preprocessor SASS and ** Fetch API. Plus I improved my knowledge in web-design (I created a responsive mock-up in Figma based on an existing layout).
+During this project I've learnt how to work with **preprocessor SASS** and **Fetch API**. Plus I improved my knowledge in web-design (I created a responsive mock-up in Figma based on an existing layout).
 
 ## Technologies:
 <div>
